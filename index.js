@@ -54,16 +54,29 @@ var PhantomJSBrowser = function(baseBrowserDecorator, config, args) {
   };
 };
 
-PhantomJSBrowser.prototype = {
-  name: 'PhantomJS',
+if (process.env.PHANTOMJS_BIN) {
+    PhantomJSBrowser.prototype = {
+      name: 'PhantomJS',
 
-  DEFAULT_CMD: {
-    linux: require('phantomjs').path,
-    darwin: require('phantomjs').path,
-    win32: phantomJSExePath()
-  },
-  ENV_CMD: 'PHANTOMJS_BIN'
-};
+      DEFAULT_CMD: {
+        linux: process.env.PHANTOMJS_BIN,
+        darwin: process.env.PHANTOMJS_BIN,
+        win32: process.env.PHANTOMJS_BIN
+      },
+      ENV_CMD: 'PHANTOMJS_BIN'
+    };
+} else {
+    PhantomJSBrowser.prototype = {
+      name: 'PhantomJS',
+
+      DEFAULT_CMD: {
+        linux: require('phantomjs').path,
+        darwin: require('phantomjs').path,
+        win32: phantomJSExePath()
+      },
+      ENV_CMD: 'PHANTOMJS_BIN'
+    };
+}
 
 PhantomJSBrowser.$inject = ['baseBrowserDecorator', 'config.phantomjsLauncher', 'args'];
 
