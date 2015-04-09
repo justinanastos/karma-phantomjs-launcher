@@ -1,6 +1,6 @@
 # karma-phantomjs-launcher
 
-> Launcher for [PhantomJS].
+> Fork of [phantom-js-launcher](https://github.com/karma-runner/karma-phantomjs-launcher) that removes dependency on [PhantomJS].
 
 ## Installation
 
